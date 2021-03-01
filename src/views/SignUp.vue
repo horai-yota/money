@@ -7,7 +7,7 @@
         <input placeholder="ユーザーネーム" type="text" />
         <input placeholder="メールアドレス" type="email" />
         <input placeholder="パスワード" type="password" />
-        <button @click="$router.push('/friend')">新規登録</button>
+        <button @click="auth">新規登録</button>
       </div>
     </div>
     <Footer />
@@ -17,9 +17,34 @@
 <script>
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from "axios";
 export default {
+  data(){
+    return{
+      name:"",
+      email:"",
+      password:""
+    };
+  },
   components: {
     Header,Footer
+  },
+  methods:{
+    auth(){
+      axios
+       .post("serene-ocean-32710/api/register",{
+         name: this.name,
+         email: this.email,
+         password: this.password
+       })
+       .then(response =>{
+         console.log(response);
+         this.$router.replace("/");
+       })
+       .catch(error =>{
+         alert(error);
+       });
+    }
   }
 };
 </script>

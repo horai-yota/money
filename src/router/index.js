@@ -5,14 +5,16 @@ import SignUp from '../views/SignUp.vue'
 import Login from '../views/Login.vue'
 import Setting from '../views/Setting.vue'
 import Friend from '../views/Friend.vue'
+import store from '../store/index'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/signup',
@@ -20,14 +22,20 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/',
-    name: 'Login',
-    component: Login
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    meta: {
+      requiresAuth:true
+    }
   },
   {
     path: '/setting',
     name: 'Setting',
-    component: Setting
+    component: Setting,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/friend',
@@ -39,7 +47,23 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some((record) => record.meta.requireAuth) &&
+    !store.state.auth
+  ) {
+    next({
+      path: "/",
+      query: {
+        redirect: to.fullPath,
+      },
+    });
+  } else {
+    next();
+  }
+});
 
 export default router

@@ -8,11 +8,13 @@
        alt="picture">
     </div>
     <div class="target">
-      <textarea placeholder="欲しいもの"></textarea>
-      <textarea placeholder="いつまでに？"></textarea>      
-      ¥<input class="howmuch" placeholder="いくらくらい？" type="number" step="100">
+      <textarea v-model="date" placeholder="欲しいもの"></textarea>
+      <textarea v-model="when" placeholder="いつまでに？"></textarea>      
+      ¥<input v-model="money" class="howmuch" placeholder="いくらくらい？" type="number" step="100">
       <br>
+      <div @click="send">
       <button>登録</button>
+      </div>
     </div>
     </div>
     <Footer />
@@ -21,10 +23,43 @@
 
 
 <script>
+import axios from "axios";
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
 export default {
+  data(){
+    return{
+      date:"",
+      when:"",
+      money:"",
+    };
+  },
+  methods:{
+    send(){
+      if(this.money === ""){
+        alert("内容を入力してください");
+      }else{
+        axios
+        .post("serene-ocean-32710/api/moneys",{
+          date: this.$store.state.date,
+          when: this.$store.state.when,
+          money: this.$store.state.money
+        })
+        .then((response) =>{
+          console.log(response);
+          alert("登録しました");
+          this.date ="";
+          this.when ="";
+          this.money ="";
+          this.$router.go({
+            path: this.$router.currentRoute.path,
+            force:true,
+          });
+        });
+      }
+    },
+  },
   components:{
     Header,
     Menu,

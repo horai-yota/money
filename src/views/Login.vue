@@ -6,7 +6,7 @@
      <div class="form">
        <input placeholder="メールアドレス" type="email" />
        <input placeholder="パスワード" type="password" />
-       <button @click="$router.push('/friend')">ログイン</button>
+       <button @click="auth">ログイン</button>
      </div>
    </div>
    <Footer />
@@ -17,8 +17,22 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 export default {
- components: {
+  data(){
+    return{
+      email:"",
+      password:""
+    };
+  },
+  components: {
    Header,Footer
+ },
+ methods:{
+   auth(){
+     this.$store.dispatch("login",{
+       email: this.email,
+       password: this.password
+     });
+   }
  }
 };
 </script>
