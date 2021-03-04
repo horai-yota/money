@@ -41,7 +41,7 @@ export default {
         alert("内容を入力してください");
       }else{
         axios
-        .post("https://serene-ocean-32710.herokuapp.com/api/money",{
+        .post("https://enigmatic-caverns-39430.herokuapp.com/api/money",{
           date: this.$store.state.date,
           when: this.$store.state.when,
           money: this.$store.state.money
