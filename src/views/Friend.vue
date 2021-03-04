@@ -30,6 +30,8 @@ export default {
   data() {
     return {
       shares: [],
+      like: 0,
+      
       path: true,
     };
   },
@@ -43,7 +45,7 @@ export default {
           if(element.user_id == this.$store.state.user.id){
             axios({
               method: "delete",
-              url: "serene-ocean-32710/api/like",
+              url: "https://serene-ocean-32710.herokuapp.com/api/like",
               data:{
                 share_id: this.shares[index].item.id,
                 user_id: this.$store.state.user.id,
@@ -59,7 +61,7 @@ export default {
         });
       }else{
         axios
-        .post("serene-ocean-32710/api/like",{
+        .post("https://serene-ocean-32710.herokuapp.com/api/like",{
           share_id: this.shares[index].item.id,
           user_id: this.$store.state.user.id,
         })
@@ -75,7 +77,7 @@ export default {
     del(index){
       axios
       .delete(
-        "serene-ocean-32710/api/shares/" +
+        "https://serene-ocean-32710.herokuapp.com/api/shares/" +
         this.shares[index].item.id
       )
       .then((response) =>{

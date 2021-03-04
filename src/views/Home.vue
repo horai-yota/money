@@ -7,8 +7,9 @@
       <p><img src="../assets/noimage.png" width="300px" height="400px"></p>
     </div>
     <div class="target">
-      <p>残り００円</p>
-      <p>残り００日</p>
+      <p>{{ $store.state.date }}</p>
+      <p>残り {{ $store.state.money }}  円</p>
+      <p>残り {{ $store.state.when }}  日</p>
     </div>
     </div>
     <Footer />

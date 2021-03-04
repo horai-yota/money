@@ -1,6 +1,6 @@
 <template>
  <div>
-   <Header />
+   <HeaderAuth />
    <div class="card">
      <p>ログイン</p>
      <div class="form">
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Header from "../components/Header";
+import HeaderAuth from "../components/HeaderAuth";
 import Footer from "../components/Footer";
 export default {
   data(){
@@ -24,7 +24,7 @@ export default {
     };
   },
   components: {
-   Header,Footer
+   HeaderAuth,Footer
  },
  methods:{
    auth(){
