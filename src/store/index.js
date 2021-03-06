@@ -41,14 +41,14 @@ export default new Vuex.Store({
   actions: {
     async login({ commit }, { email, password }) {
       const responseLogin = await axios.post(
-        "serene-ocean-32710/api/login",
+        "https://limitless-harbor-01197.herokuapp.com/api/login",
         {
           email: email,
           password: password,
         }
       );
       const responseUser = await axios.get(
-        "serene-ocean-32710/api/user",
+        "https://limitless-harbor-01197.herokuapp.com/api/user",
         {
           params: {
             email: email,
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       axios
-        .post("serene-ocean-32710/api/logout", {
+        .post("https://limitless-harbor-01197.herokuapp.com/api/logout", {
           auth: this.state.auth,
         })
         .then((response) => {

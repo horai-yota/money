@@ -45,7 +45,7 @@ export default {
           if(element.user_id == this.$store.state.user.id){
             axios({
               method: "delete",
-              url: "https://enigmatic-caverns-39430.herokuapp.com/api/like",
+              url: "https://limitless-harbor-01197.herokuapp.com/api/like",
               data:{
                 share_id: this.shares[index].item.id,
                 user_id: this.$store.state.user.id,
@@ -61,7 +61,7 @@ export default {
         });
       }else{
         axios
-        .post("https://enigmatic-caverns-39430.herokuapp.com/api/like",{
+        .post("https://limitless-harbor-01197.herokuapp.com/api/like",{
           share_id: this.shares[index].item.id,
           user_id: this.$store.state.user.id,
         })
@@ -77,7 +77,7 @@ export default {
     del(index){
       axios
       .delete(
-        "https://enigmatic-caverns-39430.herokuapp.com/api/shares/" +
+        "https://limitless-harbor-01197.herokuapp.com/api/shares" +
         this.shares[index].item.id
       )
       .then((response) =>{

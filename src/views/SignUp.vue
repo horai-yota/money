@@ -32,7 +32,7 @@ export default {
   methods:{
     auth(){
       axios
-       .post("https://enigmatic-caverns-39430.herokuapp.com/api/register",{
+       .post("https://limitless-harbor-01197.herokuapp.com/api/register",{
          name: this.name,
          email: this.email,
          password: this.password
